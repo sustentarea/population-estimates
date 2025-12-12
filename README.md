@@ -13,7 +13,7 @@ This repository provides a reproducible pipeline for processing [DATASUS](https:
 
 The report is available [here](https://sustentarea.github.io/datasus-pop-estimates/).
 
-> If you find this project useful, please consider giving it a star! &nbsp; [![GitHub Repository Stars](https://img.shields.io/github/stars/sustentarea/datasus-pop-estimates/)](https://github.com/sustentarea/datasus-pop-estimates/)
+> If you find this project useful, please consider giving it a star! &nbsp; [![GitHub Repository Stars](https://img.shields.io/github/stars/sustentarea/datasus-pop-estimates)](https://github.com/sustentarea/datasus-pop-estimates/)
 
 ## Data Availability
 
