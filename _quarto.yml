@@ -12,13 +12,13 @@ project:
 
 title: >
   A Reproducible Pipeline for Processing DATASUS Annual Population Estimates
-  by Municipality, Age, and Sex in Brazil (2000-2024)
+  by Municipality, Age, and Sex in Brazil
 author: "Daniel Vartanian & Aline Martins de Carvalho"
 keyword: >
-  pipelines, population estimates, data munging, data science, rstats,
-  open data, open science, datasus, ibge, brazil
+  Pipelines, Data Science, Open Data, Open Science, Reproducible Workflows,
+  rstats, DATASUS, IBGE, Population, Census, Brazil
 date: today
-date-format: "YYYY-MM-DD"
+date-format: long
 
 website:
   favicon: images/sustentarea-icon.svg
@@ -54,7 +54,7 @@ format:
     toc-location: right
     locale: en
     language: en-us
-    code-fold: true
+    code-fold: false
     code-link: true
     code-tools: false
     df-print: paged
@@ -65,8 +65,8 @@ format:
     csl: csl/english-apa-author-date.csl
     theme: [cosmo, scss/styles.scss, brand]
     other-links:
-      - text: Sustentarea website
-        href: https://www.fsp.usp.br/sustentarea
+      - text: Sustentarea
+        href: https://www.fsp.usp.br/sustentarea/
 
 google-scholar: true
 bibliography: references.bib

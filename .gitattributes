@@ -1,0 +1,15 @@
+*.qmd linguist-detectable
+*.qmd linguist-language=R
+
+docs/* linguist-documentation
+images/* linguist-documentation
+scss/* linguist-documentation
+ttf/* linguist-documentation
+
+.vscode/* linguist-generated
+data/* linguist-generated
+data-raw/* linguist-generated
+*.bib linguist-generated
+
+_ssh/* linguist-vendored
+csl/* linguist-vendored

@@ -2,18 +2,23 @@
 #| label: setup
 #| include: false
 
-source(here::here("R", "_setup.R"))
+library(here)
+
+source(here("R", "_setup.R"))
 ```
 
 <!-- badges: start -->
 [![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://img.shields.io/badge/Repo%20Status-Inactive-A6A82D.svg)](https://www.repostatus.org/#inactive)
 [![OSF DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/UCMS6-1284C5.svg)](https://doi.org/10.17605/OSF.IO/UCMS6)
-[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+[![License: GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 <!-- badges: end -->
 
 ## Overview
 
-This report provides a reproducible pipeline for processing [DATASUS](https://datasus.saude.gov.br/) annual population estimates by municipality, age, and sex in Brazil (2000-2024). The main goal is to provide an open and reliable workflow for processing these data, supporting research and informed public policy decisions.
+This report provides a reproducible pipeline for processing [DATASUS](https://datasus.saude.gov.br/) annual population estimates by municipality, age, and sex in Brazil.
+
+For instructions on how to run the pipeline, see the repository [README](https://github.com/sustentarea/datasus-pop-estimates/blob/main/README.md).
 
 ## Data Availability
 
@@ -21,26 +26,29 @@ This report provides a reproducible pipeline for processing [DATASUS](https://da
 [![](https://img.shields.io/badge/OSF-10.17605/OSF.IO/UCMS6-1284C5.svg)](https://doi.org/10.17605/OSF.IO/UCMS6)
 :::
 
-The processed data are available in both `csv` and `rds` formats via a dedicated repository on the Open Science Framework ([OSF](https://osf.io/)), accessible [here](https://doi.org/10.17605/OSF.IO/UCMS6). A metadata file is included alongside the validated data. You can also access these files directly from R using the [`osfr`](https://docs.ropensci.org/osfr/) package.
+The processed data are available in [`csv`](https://en.wikipedia.org/wiki/Comma-separated_values), [`rds`](https://rdrr.io/r/base/readRDS.html), and [`parquet`](https://en.wikipedia.org/wiki/Apache_Parquet) formats via a dedicated repository on the Open Science Framework ([OSF](https://osf.io)), accessible [here](https://doi.org/10.17605/OSF.IO/UCMS6). Each dataset is accompanied by a metadata file describing its structure and contents.
 
-A backup copy of the raw data is also available in OSF. You can access it [here](https://doi.org/10.17605/OSF.IO/527D4).
+You can also retrieve these files directly from [R](https://www.r-project.org/) using the [`osfr`](https://docs.ropensci.org/osfr/) package.
 
 ## Methods
 
 ### Source of Data
 
-The data used in this report were sourced from the Department of Informatics of the Brazilian Unified Health System ([DATASUS](https://datasus.saude.gov.br/)) platform, which provides annual population estimates for Brazil by municipality, age, and sex for the period 2000–2024 [@datasusb]. These estimates are produced using data by the Brazilian Institute of Geography and Statistics ([IBGE](https://www.ibge.gov.br/)).
+The data used in this report come from the following sources:
 
-For technical information about the raw dataset, see the official [technical note](http://tabnet.datasus.gov.br/cgi/IBGE/NT-POPULACAO-RESIDENTE-2000-2024.PDF) (in Portuguese).
+- Brazilian Institute of Geography and Statistics ([IBGE](https://www.ibge.gov.br/)):
+  - Official codes and metadata for Brazilian municipalities, incorporated via the [`geobr`](https://ipeagit.github.io/geobr/) R package [@pereirab], used to enrich the dataset with geographic information.
+- Department of Informatics of the Brazilian Unified Health System ([DATASUS](https://datasus.saude.gov.br/)):
+  - Annual population estimates by municipality, age, and sex for Brazil [@datasusb], the primary dataset for this pipeline. See the dataset [technical note](http://tabnet.datasus.gov.br/cgi/IBGE/NT-POPULACAO-RESIDENTE-2000-2024.PDF) (in Portuguese) for details.
 
 ### Data Munging
 
-The data munging followed the data science workflow outlined by @wickham2023e, as illustrated in [@fig-wickham-at-al-2024-figure-1]. All processes were made using the [Quarto](https://quarto.org/) publishing system [@allaire], the [R programming language](https://www.r-project.org/) [@rcoreteama] and several R packages.
+The data munging follow the data science workflow outlined by @wickham2023e, as illustrated in [@fig-wickham-at-al-2023-figure-1]. All processes were made using the [Quarto](https://quarto.org/) publishing system [@allaire], the [R](https://www.r-project.org/) programming language [@rcoreteama] and several R packages.
 
-The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023c] were prioritized. All processes were made in order to provide result transparency and reproducibility.
+For data manipulation and workflow, priority was given to packages from the [tidyverse](https://www.tidyverse.org/), [rOpenSci](https://ropensci.org/) and [r-spatial](https://r-spatial.org/) ecosystems, as well as other packages adhering to the tidy tools manifesto [@wickham2023c].
 
-::: {#fig-wickham-at-al-2024-figure-1}
-![](images/wickham-at-al-2024-figure-1.png){width=75%}
+::: {#fig-wickham-at-al-2023-figure-1}
+![](images/wickham-at-al-2023-figure-1.png){width=75%}
 
 [Source: Reproduced from @wickham2023e.]{.legend}
 
@@ -49,217 +57,241 @@ Data science workflow created by Wickham, Çetinkaya-Runde, and Grolemund.
 
 ### Code Style
 
-The Tidyverse [code style guide](https://style.tidyverse.org/) and [design principles](https://design.tidyverse.org/) were followed to ensure consistency and enhance readability.
+The Tidyverse [Tidy Tools Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html) [@wickham2023c], [code style guide](https://style.tidyverse.org/) [@wickhamb] and [design principles](https://design.tidyverse.org/) [@wickhamc] were followed to ensure consistency and enhance readability.
 
 ### Reproducibility
 
-The pipeline is fully reproducible and can be run again at any time. See the [README](https://github.com/danielvartan/datasus-pop-estimates/blob/main/README.md) file in the code repository to learn how to run it.
+The pipeline is fully reproducible and can be run again at any time. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package [@usheya] is used to manage and restore the R environment. See the [README](https://github.com/cem-usp/locais-nova-rais-geocoding/blob/main/README.md) file in the code repository to learn how to run it.
 
-## Setting the Environment
+## Set Environment
+
+### Load Packages
 
 ```{r}
-#| eval: false
+#| label: Set the Environment
 #| code-fold: false
+#| output: false
 
 library(brandr)
 library(cli)
 library(dplyr)
 library(foreign)
 library(fs)
+library(geobr)
 library(ggplot2)
+library(ggspatial)
 library(here)
+library(htmltools)
 library(httr2)
 library(janitor)
 library(labelled)
+library(nanoparquet)
 library(orbis) # github.com/danielvartan/orbis
 library(osfr)
-library(plotr) # github.com/danielvartan/plotr
 library(readr)
-library(utils)
+library(sf)
+library(stringr)
+library(tidyr)
+library(zip)
+```
+
+### Set Data Directories
+
+```{r}
+raw_data_dir <- here("data-raw")
+data_dir <- here("data")
 ```
 
 ```{r}
-#| include: false
-
-library(dplyr)
-library(ggplot2)
+for (i in c(raw_data_dir, data_dir)) {
+  if (!dir_exists(i)) dir_create(i, recurse = TRUE)
+}
 ```
 
-## Setting the Initial Variables
+### Set Initial Variables
+
+::: {.callout-note}
+The `year` variable represent the year of the consolidated [DATASUS](https://datasus.saude.gov.br/) dataset.
+:::
 
 ```{r}
-#| code-fold: false
-
-year <- 2024
+year <- 2025
 ```
 
-## Downloading the Data
+## Download and Import IBGE Municipalities Data
+
+::: {.callout-note}
+See the [Source of Data](#source-of-data) section for more information.
+:::
 
 ```{r}
-if (!dir.exists(here::here("data"))) dir.create("data")
+#| label: Download and Import IBGE Municipalities Data
+
+municipalities_data <- brazil_municipality(year = year)
 ```
 
 ```{r}
-#| code-fold: false
+municipalities_data |> glimpse()
+```
 
-raw_file_pattern <- paste0("raw-", year)
+## Download DATASUS Population Data
+
+::: {.callout-note}
+See the [Source of Data](#source-of-data) section for more information.
+:::
+
+### Download Data
+
+```{r}
+#| label: Download DATASUS Population Data
+
+file <-
+  "POPSBR" |>
+  paste0(str_sub(year, 3, 4), ".zip")
 ```
 
 ```{r}
-#| code-fold: false
+#| eval: true
 #| output: false
 
-file <- here::here("data", paste0(raw_file_pattern, ".zip"))
-
-paste0(
-  "ftp.datasus.gov.br/dissemin/publicos/IBGE/POPSVS/POPSBR",
-  year |> stringr::str_sub(start= -2),
-  ".zip"
-) |>
-  httr2::request() |>
-  httr2::req_progress() |>
-  httr2::req_perform(file)
+"ftp.datasus.gov.br" |>
+  path(
+    "dissemin",
+    "publicos",
+    "IBGE",
+    "POPSVS",
+    file
+  ) |>
+  request() |>
+  req_progress() |>
+  req_perform(here(raw_data_dir, file))
 ```
 
-## Unzipping the Data
+### Unzip Data
+
+```{r}
+#| eval: true
+
+here(raw_data_dir, file) |>
+  unzip(exdir = raw_data_dir)
+```
 
 ```{r}
 file <-
-  file |>
-  utils::unzip(exdir = here::here("data"), overwrite = TRUE)
+  raw_data_dir |>
+  dir_ls(
+    type = "file",
+    regexp = paste0(str_sub(year, 3, 4), "\\.dbf$")
+  ) |>
+  basename()
 ```
 
+### Delete Zip Files
+
 ```{r}
-file <-
-  file |>
-  fs::file_move(here::here("data", paste0(raw_file_pattern, ".csv")))
+#| eval: true
+
+raw_data_dir |>
+  dir_ls(
+    type = "file",
+    regexp = "\\.zip$"
+  ) |>
+  file_delete()
 ```
 
-```{r}
-fs::file_delete(here::here("data", paste0(raw_file_pattern, ".zip")))
-```
-
-## Reading the Data
+## Import Data
 
 ```{r}
-#| eval: false
-#| include: false
-
-file <- here::here("data", paste0(raw_file_pattern, ".csv"))
-```
-
-```{r}
-#| code-fold: false
+#| label: Import Data
 
 data <-
-  file |>
-  foreign::read.dbf() |>
-  dplyr::as_tibble()
+  raw_data_dir |>
+  here(file) |>
+  read.dbf() |>
+  as_tibble()
 ```
 
 ```{r}
-#| code-fold: false
-
-data |> dplyr::glimpse()
+data |> glimpse()
 ```
 
-## Renaming the Data
+## Tidy Data
+
+### Rename Columns
 
 ```{r}
-#| code-fold: false
+#| label: Tidy Data
 
 data <-
   data |>
-  janitor::clean_names() |>
-  dplyr::rename(
+  clean_names() |>
+  rename(
     municipality_code = cod_mun,
     year = ano,
     sex = sexo,
     age = idade,
-    n = pop
+    population = pop
   )
 ```
 
 ```{r}
-#| code-fold: false
-
-data |> dplyr::glimpse()
+data |> glimpse()
 ```
 
-## Tidying the Data
+### Standardize Columns
 
 ```{r}
-#| code-fold: false
-
 data <-
   data |>
-  dplyr::mutate(
-    dplyr::across(
+  mutate(
+    across(
       .cols = where(is.factor),
-      .fns = ~ .x |> as.character() |> as.integer()
+      .fns = \(x) x |> as.character() |> as.integer()
     )
   ) |>
-  dplyr::mutate(
-    sex = factor(
-      sex,
-      levels = 1:2,
-      labels = c("male", "female"),
-      ordered = FALSE
-    )
+  mutate(
+    sex = sex |>
+      factor(
+        levels = 1:2,
+        labels = c("male", "female"),
+        ordered = FALSE
+      )
   )
 ```
 
 ```{r}
-#| code-fold: false
-
-data |> dplyr::glimpse()
+data |> glimpse()
 ```
 
-## Adding State and Region Data
+## Transform Data
+
+### Add Municipality Information
 
 ```{r}
-#| code-fold: false
-
-brazil_municipalities <- orbis::get_brazil_municipality(
-  year = plotr:::get_closest_geobr_year(year, type = "municipality")
-)
-```
-
-```{r}
-#| code-fold: false
+#| label: Transform Data
 
 data <-
   data |>
-  dplyr::left_join(
-    brazil_municipalities,
-    by = "municipality_code"
+  left_join(
+    municipalities_data,
+    by = join_by(municipality_code),
   ) |>
-  dplyr::relocate(
-    year,
-    region_code,
-    region,
-    state_code,
-    state,
-    federal_unit,
-    municipality_code,
-    municipality
-  )
+  select(-latitude, -longitude) |>
+  relocate(region_code:federal_unit) |>
+  relocate(municipality, .after = municipality_code) |>
+  relocate(year)
 ```
 
 ```{r}
-#| code-fold: false
-
-data |> dplyr::glimpse()
+data |> glimpse()
 ```
 
-## Arranging the Data
+### Arrange Data
 
 ```{r}
-#| code-fold: false
-
 data <-
   data |>
-  dplyr::arrange(
+  arrange(
     year,
     region_code,
     state_code,
@@ -270,33 +302,41 @@ data <-
 ```
 
 ```{r}
-#| code-fold: false
-
-data |> dplyr::glimpse()
+data |> glimpse()
 ```
 
-## Data Dictionary
+## Create Data Dictionary
+
+### Prepare Metadata
 
 ```{r}
+#| label: Create Data Dictionary
+
 metadata <-
   data |>
-  labelled::`var_label<-`(
+  `var_label<-`(
     list(
       year = "Year of the population estimate",
       region_code = "IBGE region code",
       region = "Region name",
       state_code = "IBGE state code",
       state = "State name",
-      federal_unit = "Federal unit name",
+      federal_unit = "Federal unit abbreviation",
       municipality_code = "IBGE municipality code",
       municipality = "Municipality name",
       sex = "Sex of the population",
       age = "Age of the population",
-      n = "Population estimate"
+      population = "Population estimate"
     )
   ) |>
-  labelled::generate_dictionary(details = "full") |>
-  labelled::convert_list_columns_to_character()
+  generate_dictionary(details = "full") |>
+  convert_list_columns_to_character()
+```
+
+### Visualize Final Data
+
+```{r}
+metadata |> glimpse()
 ```
 
 ```{r}
@@ -304,169 +344,258 @@ metadata
 ```
 
 ```{r}
+data |> glimpse()
+```
+
+```{r}
 data
 ```
 
-## Saving the Valid Data
+## Save Data
 
-### Data
+::: {.callout-note}
+The processed data are available in [`csv`](https://en.wikipedia.org/wiki/Comma-separated_values), [`rds`](https://rdrr.io/r/base/readRDS.html) and [`parquet`](https://en.wikipedia.org/wiki/Apache_Parquet) formats through a dedicated repository on the Open Science Framework ([OSF](https://doi.org/10.17605/OSF.IO/8J94M)). See the [Data Availability](#data-availability) section for more information.
+:::
+
+### Write Data
 
 ```{r}
-valid_file_pattern <- paste0("valid-", year)
+#| label: Save Data
+
+valid_file_pattern <- year
 ```
 
 ```{r}
 data |>
-  readr::write_csv(
-    here::here("data", paste0(valid_file_pattern, ".csv"))
+  write_csv(
+    here(data_dir, paste0(valid_file_pattern, ".csv"))
   )
 ```
 
 ```{r}
 data |>
-  readr::write_rds(
-    here::here("data", paste0(valid_file_pattern, ".rds"))
+  write_rds(
+    here(data_dir, paste0(valid_file_pattern, ".rds"))
   )
 ```
 
-### Metadata
+```{r}
+data |>
+  write_parquet(
+    here(data_dir, paste0(valid_file_pattern, ".parquet"))
+  )
+```
+
+### Write Metadata
 
 ```{r}
-metadata_file_pattern <- paste0("metadata-", year)
+metadata_file_pattern <-
+  "metadata-" |>
+  paste0(year)
 ```
 
 ```{r}
 metadata |>
-  readr::write_csv(
-    here::here("data", paste0(metadata_file_pattern, ".csv"))
+  write_csv(
+    here(data_dir, paste0(metadata_file_pattern, ".csv"))
   )
 ```
 
 ```{r}
 metadata |>
-  readr::write_rds(
-    here::here("data", paste0(metadata_file_pattern, ".rds"))
+  write_rds(
+    here(data_dir, paste0(metadata_file_pattern, ".rds"))
   )
 ```
 
-<!-- ## Uploading the Data to OSF (Optional) -->
+```{r}
+metadata |>
+  write_parquet(
+    here(data_dir, paste0(metadata_file_pattern, ".parquet"))
+  )
+```
+
+<!-- ## Upload the Data to OSF (Optional) -->
 
 <!-- Only repository administrators can upload data to OSF. -->
-<!-- To enable uploads, set your `OSF_PAT` environment variable with a valid OSF personal access token. -->
+<!-- To enable uploads, set a `OSF_PAT` environment variable with a valid OSF personal access token. -->
 
 ```{r}
 #| eval: false
 #| include: false
 
-Sys.getenv("OSF_PAT") |> osfr::osf_auth()
+Sys.getenv("OSF_PAT") |> osf_auth()
 ```
 
 ```{r}
 #| eval: false
 #| include: false
 
-osf_id <- paste0("https://osf.io/", "h3pyd")
-
-osfr::osf_upload(
-  x = osfr::osf_retrieve_node(osf_id),
-  path = c(
-    here::here("data", paste0(valid_file_pattern, ".csv")),
-    here::here("data", paste0(valid_file_pattern, ".rds")),
-    here::here("data", paste0(metadata_file_pattern, ".csv")),
-    here::here("data", paste0(metadata_file_pattern, ".rds"))
-  ),
-  conflicts = "overwrite"
-)
+osf_valid_data_id <- "h3pyd"
 ```
 
-## Visualizing the Data
+```{r}
+#| eval: false
+#| include: false
+
+osf_valid_data_id |>
+  osf_retrieve_node() |>
+  osf_upload(
+    path = c(
+      here(data_dir, paste0(valid_file_pattern, ".csv")),
+      here(data_dir, paste0(valid_file_pattern, ".rds")),
+      here(data_dir, paste0(valid_file_pattern, ".parquet")),
+      here(data_dir, paste0(metadata_file_pattern, ".csv")),
+      here(data_dir, paste0(metadata_file_pattern, ".rds")),
+      here(data_dir, paste0(metadata_file_pattern, ".parquet"))
+    ),
+    conflicts = "overwrite"
+  )
+```
+
+## Visualize Data
+
+### Plot Histogram of Population Estimate by Municipality
+
+```{r}
+#| label: Visualize Data
+
+data |>
+  summarize(
+    population = sum(population, na.rm = TRUE),
+    .by = "municipality_code"
+  ) |>
+  ggplot(aes(x = population)) +
+  geom_histogram(
+    aes(y = after_stat(density)),
+    bins = 30,
+    fill = get_brand_color("gray-d25"),
+    color = get_brand_color("white")
+  ) +
+  geom_density(
+    color = "red",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Population Estimates by Municipality in Brazil",
+    subtitle = paste0("Year: ", year),
+    x = "Population Estimate",
+    y = "Density",
+    caption = "Source: DATASUS/IBGE"
+  )
+```
+
+### Plot Map of Population Estimate by Municipality
+
+#### Set Shape
+
+```{r}
+shape <-
+  read_municipality(
+    year = year |>
+      closest_geobr_year(type = "municipality"),
+    showProgress = FALSE
+  ) |>
+  st_transform(st_crs(4326))
+```
+
+#### Prepare Plot Data
+
+```{r}
+plot_data <-
+  data |>
+  summarize(
+    population = sum(population, na.rm = TRUE),
+    .by = "municipality_code"
+  ) |>
+  left_join(
+    shape,
+    by = join_by(municipality_code == code_muni)
+  ) |>
+  rename(geometry = geom) |>
+  select(
+    municipality_code,
+    population,
+    geometry
+  ) |>
+  drop_na(population)
+```
+
+#### Plot Data
 
 ```{r}
 brand_div_palette <- function(x) {
   brandr:::make_color_ramp(
-    n_prop = x,
+    n = x,
     colors = c(
-      brandr::get_brand_color("dark-red"),
-      # brandr::get_brand_color("white"),
-      brandr::get_brand_color_mix(
+      get_brand_color("dark-red"),
+      # get_brand_color("white"),
+      get_brand_color_mix(
         position = 950,
         color_1 = "dark-red",
         color_2 = "dark-red-triadic-blue",
         alpha = 0.5
       ),
-      brandr::get_brand_color("dark-red-triadic-blue")
+      get_brand_color("dark-red-triadic-blue")
     )
   )
 }
 ```
 
 ```{r}
-data |>
-  dplyr::summarize(
-    n = sum(n, na.rm = TRUE),
-    .by = c("municipality_code")
-  ) |>
-  plotr:::plot_hist(
-    col = "n",
-    density_line_color = "red",
-    x_label = "Population estimate",
-    print = FALSE
+plot_data |>
+  st_as_sf() |>
+  ggplot(aes(fill = population)) +
+  geom_sf(
+    color = get_brand_color("gray"),
+    linewidth = 0.05
   ) +
-  ggplot2::labs(
-    title = "Population Estimates by Municipality in Brazil",
-    subtitle = paste0("Year: ", year),
-    caption = "Source: DATASUS/IBGE"
-  )
-```
-
-```{r}
-#| fig-height: 6
-#| fig-width: 8
-
-data |>
-  dplyr::summarize(
-    n = sum(n, na.rm = TRUE),
-    .by = c("municipality_code")
-  ) |>
-  plotr:::plot_brazil_municipality(
-    col_fill = "n",
-    col_code = "municipality_code",
-    year = plotr:::get_closest_geobr_year(year, type = "municipality"),
-    comparable_areas = FALSE,
-    reverse = FALSE,
-    transform = "log10",
+  scale_fill_binned(
     palette = brand_div_palette,
-    print = FALSE
+    na.value = get_brand_color("gray-d25"),
+    transform = "log10"
   ) +
-  ggplot2::labs(
+  annotation_scale(
+    aes(),
+    location = "br",
+    style = "tick",
+    height = unit(0.5, "lines")
+  ) +
+  annotation_north_arrow(
+    location = "br",
+    height = unit(2, "lines"),
+    width = unit(2, "lines"),
+    pad_x = unit(0.25, "lines"),
+    pad_y = unit(1.25, "lines"),
+    style = north_arrow_fancy_orienteering
+  ) +
+  labs(
     title = "Population Estimates by Municipality in Brazil",
     subtitle = paste0("Year: ", year),
+    fill = NULL,
     caption = "Source: DATASUS/IBGE"
   )
 ```
 
-```{r}
-#| eval: false
-#| include: false
+## Citation
 
-grDevices::dev.off()
-```
-
-## How to Cite
+::: {.callout-important}
+When using this data, you must also cite the original data sources.
+:::
 
 To cite this work, please use the following format:
 
-Vartanian, D., & Carvalho, A. M. (2025). *A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil (2000-2024)* \[Report\]. Sustentarea Research and Extension Group at the University of São Paulo. <https://sustentarea.github.io/datasus-pop-estimates>
+Vartanian, D., & Carvalho, A. M. (2025). *A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil* \[Computer software\]. Sustentarea Research and Extension Group, University of São Paulo. <https://sustentarea.github.io/datasus-pop-estimates>
 
-A BibTeX entry for LaTeX users is
+A BibLaTeX entry for LaTeX users is:
 
 ```
-@techreport{vartanian2025,
-  title = {A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil (2000-2024)},
+@software{vartanian2025,
+  title = {A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil},
   author = {{Daniel Vartanian} and {Aline Martins de Carvalho}},
   year = {2025},
   address = {São Paulo},
-  institution = {Sustentarea Research and Extension Group at the University of São Paulo},
+  institution = {Sustentarea Research and Extension Group, the University of São Paulo},
   langid = {en},
   url = {https://sustentarea.github.io/datasus-pop-estimates}
 }
@@ -474,21 +603,99 @@ A BibTeX entry for LaTeX users is
 
 ## License
 
-::: {style="text-align: left;"}
-[![](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
-:::
+[![License: GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-This content is licensed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/), placing these materials in the public domain. You may freely copy, modify, distribute, and use this work, even for commercial purposes, without permission or attribution.
+> [!IMPORTANT]
+> The original data sources may be subject to their own licensing terms and conditions.
+
+The code in this repository is licensed under the [GNU General Public License Version 3](https://www.gnu.org/licenses/gpl-3.0), while the report is available under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+```
+Copyright (C) 2025 Sustentarea Research and Extension Group
+
+The code in this report is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+```
 
 ## Acknowledgments
 
-![](images/sustentarea-icon.svg){style="width: 15%;"}
+```{=html}
+<br>
+```
 
-This work is part of the [Sustentarea](https://www.fsp.usp.br/sustentarea) Research and Extension Group project: *Global syndemic: The impact of anthropogenic climate change on the health and nutrition of children under five years old attended by Brazil's public health system (SUS)*.
+```{r, results='asis'}
+#| echo: false
 
-![](images/cnpq-logo.svg){style="width: 25%;"}
+blocks <- list(
+  list(
+    logo_link = "https://www.fsp.usp.br/sustentarea/",
+    logo_src = "images/sustentarea-icon.svg",
+    logo_alt = "Sustentarea Logo",
+    logo_width = 100,
+    text = 'This work is part of a research project by the (<a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>) Research and Extension Group of the University of São Paulo (<a href="https://usp.br/">USP</a>) titled: <em>Global syndemic: The impact of anthropogenic climate change on the health and nutrition of children under five years old attended by Brazil\'s public health system (SUS)</em>.'
+  ),
+  list(
+    logo_link = "https://www.gov.br/cnpq/",
+    logo_src = "images/cnpq-logo.svg",
+    logo_alt = "CNPq Logo",
+    logo_width = 160,
+    text = 'This work was supported by the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>) of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> of Brazil, and the National Council for Scientific and Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).'
+  )
+)
 
-This work was supported by the Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil ([CNPq](https://www.gov.br/cnpq/)).
+blocks |>
+  lapply(
+    function(x) {
+      div(
+        style = paste0(
+          "display: flex; ",
+          "align-items: flex-start; ",
+          "margin-bottom: 2em;"
+        ),
+        div(
+          style = paste0(
+            "flex: 0 0 30%; ",
+            "display: flex; ",
+            "justify-content: center; ",
+            "margin: auto 0;"
+          ),
+          tags$a(
+            href = x$logo_link,
+            tags$img(
+              src = x$logo_src,
+              alt = x$logo_alt,
+              style = paste0(
+                "width: ",
+                x$logo_width,
+                "px; ",
+                "height: auto;"
+              )
+            )
+          )
+        ),
+        div(
+          style = paste0(
+            "flex: 1; ",
+            "padding-left: 1em;"
+          ),
+          HTML(x$text)
+        )
+      )
+    }
+  ) |>
+  tagList() |>
+  browsable()
+```
 
 ## References {.unnumbered}
 

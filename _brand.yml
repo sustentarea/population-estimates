@@ -12,9 +12,9 @@ meta:
     linkedin: https://www.linkedin.com/in/sustentarea-usp-230700218
     linktree: https://linktr.ee/sustentarea.usp
   description: |
-    Research and Extension Center at the University of São Paulo
+    Research and Extension Center of the University of São Paulo
     (USP) dedicated to advancing scientific research in food systems,
-    sustainable eating, and the global syndemic. 🍏🥦🌍
+    sustainable eating, and the global syndemic.
   founded: 2012
 
 color:
@@ -28,9 +28,13 @@ color:
     dark-red: "#B44522"
     dark-red-triadic-blue: "#4522B4" # colortools::triadic("#B44522")[3]
     white: "#FFFFFF"
-    grey: "#7A7A7A"
-    grey-950: "#F1F1F1"
-    grey-975: "#F8F8F8" # get_brand_color_tint(950, "grey")
+    gray: "#7A7A7A"
+    gray-d15: "#676767" # colorspace::darken("#7A7A7A", 0.15)
+    gray-d25: "#5A5A5A" # colorspace::darken("#7A7A7A", 0.25)
+    gray-d45: "#424242" # colorspace::darken("#7A7A7A", 0.45)
+    gray-d50: "#3D3D3D" # colorspace::darken("#7A7A7A", 0.50)
+    gray-l50: "#BABABA" # colorspace::lighten("#7A7A7A", 0.50)
+    gray-l95: "#F8F8F8"
     black: "#272B33"
   background: white
   primary: green
@@ -51,20 +55,20 @@ typography:
       source: google
   base:
     family: Poppins
-    size: 0.9rem
-    line-height: 2
+    size: 1rem
+    line-height: 1.75
     weight: normal
   headings:
     family: Poppins
     color: brown
-    line-height: 2
-    weight: bold
+    line-height: 1.75
+    weight: 800
   monospace: DM Mono
   monospace-inline:
     color: green
-    background-color: grey-975
+    background-color: gray-l95
   monospace-block:
-    background-color: grey-975
+    background-color: gray-l95
   link:
     color: green
     decoration: underline
