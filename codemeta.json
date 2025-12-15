@@ -5,7 +5,7 @@
   "dateCreated": "2025-05-04",
   "applicationCategory": "Pipelines and Workflows",
   "applicationSubCategory": "Reproducible Research",
-  "name": "A Reproducible Pipeline for Processing DATASUS Annual Population Estimates by Municipality, Age, and Sex in Brazil",
+  "name": "A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil",
   "author": [
     {
       "@type": "Person",
