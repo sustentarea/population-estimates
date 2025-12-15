@@ -418,12 +418,13 @@ osf_valid_data_id |>
   )
 ```
 
-## Visualize Data
+## Explore Data
 
 ### Plot Histogram by Municipality
 
 ```{r}
-#| label: Visualize Data
+#| label: Explore Data
+#| code-fold: true
 
 data |>
   summarize(
@@ -458,6 +459,8 @@ data |>
 #### Set Shape
 
 ```{r}
+#| code-fold: true
+
 shape <-
   read_municipality(
     year = year |>
@@ -470,6 +473,8 @@ shape <-
 #### Prepare Plot Data
 
 ```{r}
+#| code-fold: true
+
 plot_data <-
   data |>
   summarize(
@@ -492,6 +497,8 @@ plot_data <-
 #### Plot Data
 
 ```{r}
+#| code-fold: true
+
 brand_div_palette <- function(x) {
   brandr:::make_color_ramp(
     n = x,
@@ -511,6 +518,8 @@ brand_div_palette <- function(x) {
 ```
 
 ```{r}
+#| code-fold: true
+
 plot_data |>
   st_as_sf() |>
   ggplot(aes(fill = population)) +
