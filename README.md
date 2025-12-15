@@ -1,7 +1,7 @@
-# datasus-pop-estimates
+# population-estimates
 
 <!-- badges: start -->
-[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://img.shields.io/badge/Repo%20Status-Inactive-A6A82D.svg)](https://www.repostatus.org/#inactive)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![OSF DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/UCMS6-1284C5.svg)](https://doi.org/10.17605/OSF.IO/UCMS6)
 [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -11,9 +11,9 @@
 
 This repository provides a reproducible pipeline for processing [DATASUS](https://datasus.saude.gov.br/) annual population estimates by municipality, age, and sex in Brazil.
 
-The report is available [here](https://sustentarea.github.io/datasus-pop-estimates/).
+The report is available [here](https://sustentarea.github.io/population-estimates/).
 
-> If you find this project useful, please consider giving it a star! &nbsp; [![GitHub Repository Stars](https://img.shields.io/github/stars/sustentarea/datasus-pop-estimates)](https://github.com/sustentarea/datasus-pop-estimates/)
+> If you find this project useful, please consider giving it a star! &nbsp; [![GitHub Repository Stars](https://img.shields.io/github/stars/sustentarea/population-estimates)](https://github.com/sustentarea/population-estimates/)
 
 ## Data Availability
 
@@ -51,7 +51,7 @@ These will activate the rendering process, which may take some time depending on
 
 To cite this work, please use the following format:
 
-Vartanian, D., & Carvalho, A. M. (2025). *A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil* \[Computer software\]. Sustentarea Research and Extension Group, University of São Paulo. <https://sustentarea.github.io/datasus-pop-estimates>
+Vartanian, D., & Carvalho, A. M. (2025). *A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil* \[Computer software\]. Sustentarea Research and Extension Group, University of São Paulo. <https://sustentarea.github.io/population-estimates>
 
 A BibLaTeX entry for LaTeX users is:
 
@@ -63,7 +63,7 @@ A BibLaTeX entry for LaTeX users is:
   address = {São Paulo},
   institution = {Sustentarea Research and Extension Group, the University of São Paulo},
   langid = {en},
-  url = {https://sustentarea.github.io/datasus-pop-estimates}
+  url = {https://sustentarea.github.io/population-estimates}
 }
 ```
 
@@ -95,15 +95,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 ## Acknowledgments
 
-<br>
-
 <table>
   <tr>
     <td width="30%" align="center" valign="center">
       <a href="https://www.fsp.usp.br/sustentarea/"><img src="images/sustentarea-logo.svg" width="100" alt="Sustentarea Logo"/></a>
     </td>
     <td width="70%" valign="center">
-      This work is part of a research project by the (<a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>) Research and Extension Group of the University of São Paulo (<a href="https://usp.br/">USP</a>) titled: <em>Global syndemic: The impact of anthropogenic climate change on the health and nutrition of children under five years old attended by Brazil\'s public health system (SUS)</em>.
+      This work is part of a research project by the <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a> Research and Extension Group of the University of São Paulo (<a href="https://usp.br/">USP</a>) titled: <em>Global syndemic: The impact of anthropogenic climate change on the health and nutrition of children under five years old attended by Brazil\'s public health system</em>.
     </td>
   </tr>
 </table>

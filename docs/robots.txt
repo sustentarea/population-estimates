@@ -1,1 +1,1 @@
-Sitemap: https://sustentarea.github.io/datasus-pop-estimates/sitemap.xml
+Sitemap: https://sustentarea.github.io/population-estimates/sitemap.xml

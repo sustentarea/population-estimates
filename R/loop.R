@@ -3,7 +3,7 @@ library(fs)
 library(groomr) # github.com/danielvartan/groomr
 library(here)
 
-years <- 2000:2024
+years <- 2000:2025
 
 cli_progress_bar(
   name = "Rendering files",

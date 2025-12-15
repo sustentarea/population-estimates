@@ -16,15 +16,15 @@ title: >
 author: "Daniel Vartanian & Aline Martins de Carvalho"
 keyword: >
   Pipelines, Data Science, Open Data, Open Science, Reproducible Workflows,
-  rstats, DATASUS, IBGE, Population, Census, Brazil
+  rstats, DATASUS, IBGE, Population Estimates, Census, Brazil
 date: today
 date-format: long
 
 website:
   favicon: images/sustentarea-icon.svg
-  site-url: https://sustentarea.github.io/datasus-pop-estimates/
-  repo-url: https://github.com/sustentarea/datasus-pop-estimates/
-  issue-url: https://github.com/sustentarea/datasus-pop-estimates/issues/
+  site-url: https://sustentarea.github.io/population-estimates/
+  repo-url: https://github.com/sustentarea/population-estimates/
+  issue-url: https://github.com/sustentarea/population-estimates/issues/
   open-graph:
     image: images/og-image.png
     image-width: 2400
@@ -38,7 +38,7 @@ website:
     background: "#272B33"
     right:
       - icon: github
-        href: https://github.com/sustentarea/datasus-pop-estimates/
+        href: https://github.com/sustentarea/population-estimates/
         aria-label: GitHub
 
 lightbox:
