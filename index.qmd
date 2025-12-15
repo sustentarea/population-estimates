@@ -1,5 +1,5 @@
 ```{r}
-#| label: setup
+#| label: Setup
 #| include: false
 
 library(here)
