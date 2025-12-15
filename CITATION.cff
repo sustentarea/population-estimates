@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+title: >
+  A Reproducible Pipeline for Processing DATASUS Annual Population Estimates
+  by Municipality, Age, and Sex in Brazil
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Daniel
+    family-names: Vartanian
+    email: danielvartan@proton.me
+    affiliation: University of São Paulo
+    orcid: 'https://orcid.org/0000-0001-7782-759X'
+  - given-names: Aline Martins
+    family-names: Carvalho
+    email: alinenutri@usp.br
+    affiliation: University of São Paulo
+    orcid: 'https://orcid.org/0000-0002-4900-5609'
+abstract: >-
+  A reproducible pipeline for processing DATASUS annual population estimates by
+  municipality, age, and sex in Brazil.
+keywords:
+  - Pipelines
+  - Data Science
+  - Open Data
+  - Open Science
+  - Reproducible Workflows
+  - rstats
+  - DATASUS
+  - IBGE
+  - Population Estimates
+  - Census
+  - Brazil
+identifiers:
+  - type: doi
+    value: 10.17605/OSF.IO/UCMS6
+    description: OSF Research Compendium
+repository-code: 'https://github.com/sustentarea/population-estimates'
+repository: 'https://doi.org/10.17605/OSF.IO/UCMS6'
+repository-artifact: 'https://doi.org/10.17605/OSF.IO/H3PYD'
+license: GPLv3

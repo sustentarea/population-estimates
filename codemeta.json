@@ -1,0 +1,96 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "population-estimates",
+  "dateCreated": "2025-05-04",
+  "applicationCategory": "Pipelines and Workflows",
+  "applicationSubCategory": "Reproducible Research",
+  "name": "A Reproducible Pipeline for Processing DATASUS Annual Population Estimates by Municipality, Age, and Sex in Brazil",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Vartanian",
+      "givenName": "Daniel",
+      "email": "danielvartan@proton.me",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of São Paulo",
+        "url": "https://www.usp.br"
+      },
+      "@id": "https://orcid.org/0000-0001-7782-759X"
+    },
+    {
+      "@type": "Person",
+      "familyName": "Carvalho",
+      "givenName": "Aline Martins de",
+      "email": "alinenutri@usp.br",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of São Paulo",
+        "url": "https://www.usp.br"
+      },
+      "@id": "https://orcid.org/0000-0002-4900-5609"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (SECTICS) of the Ministry of Health of Brazil",
+      "@id": "https://www.gov.br/saude/pt-br/composicao/sectics/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil (CNPq)",
+      "@id": "https://www.gov.br/cnpq/"
+    }
+  ],
+  "funding": "CNPq 444588/2023-0",
+  "provider": {
+    "@id": "https://www.fsp.usp.br/sustentarea/",
+    "@type": "Organization",
+    "name": "Sustentarea",
+    "url": "https://www.fsp.usp.br/sustentarea/"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "name": "Sustentarea",
+    "url": "https://www.fsp.usp.br/sustentarea/"
+  },
+  "maintainer": {
+    "@type": "Person",
+    "familyName": "Vartanian",
+    "givenName": "Daniel",
+    "email": "danielvartan@proton.me",
+    "@id": "https://orcid.org/0000-0001-7782-759X"
+  },
+  "description": "A reproducible pipeline for processing DATASUS annual population estimates by municipality, age, and sex in Brazil.",
+  "keywords": [
+    "Pipelines",
+    "Data Science",
+    "Open Data",
+    "Open Science",
+    "Reproducible Workflows",
+    "rstats",
+    "DATASUS",
+    "IBGE",
+    "Population Estimates",
+    "Census",
+    "Brazil"
+  ],
+  "license": "https://www.gnu.org/licenses/gpl-3.0",
+  "codeRepository": "https://github.com/sustentarea/population-estimates",
+  "issueTracker": "https://github.com/sustentarea/population-estimates/issues",
+  "relatedLink": [
+    "https://doi.org/10.17605/OSF.IO/UCMS6",
+    "https://doi.org/10.17605/OSF.IO/H3PYD"
+  ],
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://www.r-project.org"
+  },
+  "developmentStatus": "active",
+  "readme": "https://github.com/sustentarea/population-estimates/blob/main/README.md",
+  "releaseNotes": "https://github.com/sustentarea/population-estimates/blob/main/NEWS.md",
+  "version": "1.1.0"
+}
